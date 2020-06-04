@@ -48,7 +48,7 @@ class SQLSource(base.DataSource):
             # first few records, rather than loading the whole thing
             self._load()
         return base.Schema(datashape=None,
-                           dtype=self._dataframe.dtypes,
+                           dtype={idx : str(val) for idx, val in self._dataframe.dtypes.items()},
                            shape=self._dataframe.shape,
                            npartitions=1,
                            extra_metadata={})
